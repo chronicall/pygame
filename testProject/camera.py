@@ -3,6 +3,7 @@
 import pygame
 import pygame.camera
 from pygame.locals import *
+from datetime import datetime
 
 pygame.init()
 pygame.camera.init()
@@ -44,6 +45,10 @@ class Capture(object):
                     # close the camera safely
                     self.cam.stop()
                     going = False
+
+                if e.type == KEYDOWN and e.key == K_SPACE:
+                    i = datetime.now()
+                    pygame.image.save(self.display, i.strftime('%Y-%m-%d_%H.%M.%S.jpg'))
 
             self.get_and_flip()
 
